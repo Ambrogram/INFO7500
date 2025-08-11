@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  bitcoind:
+    image: kylemanna/bitcoind:latest
+    container_name: bitcoin-node
+    restart: unless-stopped
+    ports:
+      - "8332:8332"  # RPC port
+      - "8333:8333"  # P2P port
+    volumes:
+      - bitcoin-data:/bitcoin/.bitcoin
+      - ./bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf:ro
+    environment:
+      - BITCOIN_RPC_USER=bitcoinrpc
+      - BITCOIN_RPC_PASSWORD=your_secure_password_here
+    command: >
+      bitcoind
+      -conf=/bitcoin/.bitcoin/bitcoin.conf
+      -rpcuser=${BITCOIN_RPC_USER}
+      -rpcpassword=${BITCOIN_RPC_PASSWORD}
+      -rpcallowip=0.0.0.0/0
+      -rpcbind=0.0.0.0
+      -rpcport=8332
+      -txindex=1
+      -server=1
+      -daemon=0
+      -printtoconsole=1
+    networks:
+      - bitcoin-network
+
+  bitcoin-web-ui:
+    image: jamesob/bitcoin-core:latest
+    container_name: bitcoin-web-ui
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - bitcoin-data:/bitcoin/.bitcoin
+    environment:
+      - BITCOIN_RPC_USER=bitcoinrpc
+      - BITCOIN_RPC_PASSWORD=your_secure_password_here
+    command: >
+      bitcoin-cli
+      -rpcuser=${BITCOIN_RPC_USER}
+      -rpcpassword=${BITCOIN_RPC_PASSWORD}
+      -rpcport=8332
+      -rpcconnect=bitcoind
+      getblockchaininfo
+    depends_on:
+      - bitcoind
+    networks:
+      - bitcoin-network
+
+  # Optional: Bitcoin Explorer for better visualization
+  bitcoin-explorer:
+    image: bitcoinjs/bitcoin-explorer:latest
+    container_name: bitcoin-explorer
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - BITCOIN_NETWORK=mainnet
+      - BITCOIN_RPC_HOST=bitcoind
+      - BITCOIN_RPC_PORT=8332
+      - BITCOIN_RPC_USER=bitcoinrpc
+      - BITCOIN_RPC_PASSWORD=your_secure_password_here
+    depends_on:
+      - bitcoind
+    networks:
+      - bitcoin-network
+
+volumes:
+  bitcoin-data:
+    driver: local
+
+networks:
+  bitcoin-network:
+    driver: bridge 

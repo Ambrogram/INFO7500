@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "question": "What will be the Bitcoin price on December 31, 2024, and how will it affect mining profitability for a 100 TH/s rig with electricity costs of $0.12 per kWh?",
+    "expected_sql": "SELECT 'Cannot predict future prices or calculate future mining profitability' as error",
+    "difficulty": "extreme",
+    "description": "Future price prediction with complex mining profitability calculations",
+    "reason_unanswerable": "Future price prediction, complex economic modeling, and real-time electricity cost calculations are beyond the scope of historical blockchain data"
+  },
+  {
+    "id": 2,
+    "question": "Analyze the psychological impact of the 2017 Bitcoin bubble on current market sentiment and predict the next major market cycle based on social media sentiment analysis, whale wallet movements, and on-chain metrics correlation patterns",
+    "expected_sql": "SELECT 'Cannot perform psychological analysis, sentiment analysis, or complex market cycle predictions' as error",
+    "difficulty": "extreme",
+    "description": "Complex psychological and sentiment analysis with market prediction",
+    "reason_unanswerable": "Requires psychological analysis, sentiment analysis, social media data, whale tracking, and complex market cycle prediction algorithms that are not available in the blockchain database"
+  },
+  {
+    "id": 3,
+    "question": "What is the optimal mining strategy for maximizing profits while minimizing environmental impact, considering the current hash rate distribution, energy mix of mining pools, carbon footprint calculations, and regulatory compliance across different jurisdictions?",
+    "expected_sql": "SELECT 'Cannot provide mining strategy optimization, environmental impact analysis, or regulatory compliance advice' as error",
+    "difficulty": "extreme",
+    "description": "Complex mining strategy optimization with environmental and regulatory considerations",
+    "reason_unanswerable": "Requires real-time mining pool data, environmental impact calculations, regulatory knowledge across jurisdictions, and complex optimization algorithms that are not available in the blockchain database"
+  }
+] 

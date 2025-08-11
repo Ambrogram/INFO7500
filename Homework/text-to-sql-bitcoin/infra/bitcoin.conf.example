@@ -1,0 +1,89 @@
+# Bitcoin Core Configuration File
+# Copy this file to bitcoin.conf and update with your settings
+
+# RPC Configuration
+rpcuser=bitcoinrpc
+rpcpassword=your_secure_password_here
+rpcallowip=127.0.0.1
+rpcbind=127.0.0.1
+rpcport=8332
+
+# Network Configuration
+testnet=0
+regtest=0
+mainnet=1
+
+# Data Directory
+datadir=/path/to/bitcoin/data
+blocksdir=/path/to/bitcoin/blocks
+
+# Indexing and API
+txindex=1
+blockfilterindex=1
+coinstatsindex=1
+
+# Performance
+dbcache=450
+maxmempool=300
+maxconnections=125
+maxuploadtarget=5000
+
+# Logging
+debug=rpc
+debug=net
+debug=tor
+debug=mempool
+debug=http
+debug=bench
+debug=zmq
+debug=db
+debug=qt
+debug=selectcoins
+debug=reindex
+debug=reindex-chainstate
+debug=validation
+debug=estimatefee
+debug=addrman
+debug=selectcoins
+debug=bench
+debug=http
+debug=tor
+debug=mempool
+debug=net
+debug=zmq
+debug=db
+debug=qt
+debug=selectcoins
+debug=reindex
+debug=reindex-chainstate
+debug=validation
+debug=estimatefee
+debug=addrman
+
+# Security
+disablewallet=0
+wallet=wallet.dat
+
+# Mining (if running a miner)
+server=1
+daemon=1
+listen=1
+listenonion=1
+
+# Optional: Enable REST API
+rest=1
+
+# Optional: Enable ZeroMQ
+zmqpubrawblock=tcp://127.0.0.1:28332
+zmqpubrawtx=tcp://127.0.0.1:28333
+
+# Optional: Enable mempool monitoring
+mempoolreplacement=1
+mempoolfullrbf=1
+
+# Optional: Performance tuning
+par=0
+dbcache=450
+maxmempool=300
+maxconnections=125
+maxuploadtarget=5000 

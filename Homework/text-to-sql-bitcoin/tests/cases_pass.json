@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "question": "How many total blocks are there?",
+    "expected_sql": "SELECT COUNT(*) as total_blocks FROM blocks",
+    "difficulty": "easy",
+    "description": "Simple count of all blocks in the database"
+  },
+  {
+    "id": 2,
+    "question": "What is the latest block height?",
+    "expected_sql": "SELECT MAX(height) as latest_height FROM blocks",
+    "difficulty": "easy",
+    "description": "Get the highest block height (most recent block)"
+  },
+  {
+    "id": 3,
+    "question": "How many transactions are in the latest block?",
+    "expected_sql": "SELECT nTx FROM blocks ORDER BY height DESC LIMIT 1",
+    "difficulty": "easy",
+    "description": "Get transaction count from the most recent block"
+  },
+  {
+    "id": 4,
+    "question": "What is the current difficulty?",
+    "expected_sql": "SELECT difficulty FROM blocks ORDER BY height DESC LIMIT 1",
+    "difficulty": "easy",
+    "description": "Get mining difficulty from the latest block"
+  },
+  {
+    "id": 5,
+    "question": "Show me the last 10 blocks with their heights and timestamps",
+    "expected_sql": "SELECT height, time, hash FROM blocks ORDER BY height DESC LIMIT 10",
+    "difficulty": "medium",
+    "description": "Get recent blocks with specific columns and limit"
+  },
+  {
+    "id": 6,
+    "question": "What is the average block size?",
+    "expected_sql": "SELECT AVG(size) as avg_block_size FROM blocks",
+    "difficulty": "medium",
+    "description": "Calculate average size across all blocks"
+  },
+  {
+    "id": 7,
+    "question": "How many blocks were mined in the last 24 hours?",
+    "expected_sql": "SELECT COUNT(*) as blocks_last_24h FROM blocks WHERE time >= strftime('%s', 'now', '-1 day')",
+    "difficulty": "medium",
+    "description": "Count blocks from the last 24 hours using time filtering"
+  },
+  {
+    "id": 8,
+    "question": "What is the total number of transactions across all blocks?",
+    "expected_sql": "SELECT COUNT(*) as total_transactions FROM transactions",
+    "difficulty": "medium",
+    "description": "Count all transactions in the database"
+  },
+  {
+    "id": 9,
+    "question": "Show me blocks with more than 1000 transactions",
+    "expected_sql": "SELECT height, hash, nTx FROM blocks WHERE nTx > 1000 ORDER BY nTx DESC",
+    "difficulty": "hard",
+    "description": "Filter blocks by transaction count with ordering"
+  },
+  {
+    "id": 10,
+    "question": "What is the largest transaction output value in the database?",
+    "expected_sql": "SELECT MAX(value) as max_output_value FROM tx_outputs",
+    "difficulty": "hard",
+    "description": "Find the maximum transaction output value across all outputs"
+  }
+] 
